@@ -72,6 +72,12 @@ for (const soubor of soubory) {
     await stranka.goto(adresaSablony, { waitUntil: 'load' });
     await stranka.evaluate(([d, f]) => vykresli(d, f), [data, format]);
     await stranka.evaluate(() => document.fonts.ready);
+    // Fotky se stahuji ze site, tak pockame, nez se opravdu nactou.
+    await stranka.waitForFunction(
+      () => [...document.images].every((i) => i.complete && i.naturalWidth > 0),
+      null,
+      { timeout: 30000 },
+    );
     await stranka.waitForTimeout(250);
 
     const cil = path.join(slozkaObrazku, `${data.id}_${format}.jpg`);
