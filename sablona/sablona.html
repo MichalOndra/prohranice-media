@@ -15,8 +15,22 @@ html,body{ background:#111; }
 #plocha.ctverec{ width:1080px; height:1080px; padding:78px 84px 74px; }
 #plocha.story { width:1080px; height:1920px; padding:300px 88px 290px; }
 
-.vnitrek{ display:flex; flex-direction:column; height:100%; justify-content:space-between; }
-.story .vnitrek{ height:100%; }
+.vnitrek{ position:relative; z-index:2; display:flex; flex-direction:column; height:100%; justify-content:space-between; }
+
+/* --- fotografické pozadí --- */
+.fotopodklad{ position:absolute; inset:0; z-index:0; }
+.fotopodklad img{ width:100%; height:100%; object-fit:cover; object-position:50% 18%; display:block; }
+.zavoj{
+  position:absolute; inset:0; z-index:1;
+  background:
+    linear-gradient(to bottom, rgba(27,43,80,.80) 0%, rgba(27,43,80,.30) 14%, rgba(27,43,80,0) 26%),
+    linear-gradient(to top,   #1B2B50 0%, #1B2B50 30%, rgba(27,43,80,.94) 41%, rgba(27,43,80,.62) 54%, rgba(27,43,80,.18) 70%, rgba(27,43,80,0) 84%);
+}
+.story .zavoj{
+  background:
+    linear-gradient(to bottom, rgba(27,43,80,.80) 0%, rgba(27,43,80,.55) 13%, rgba(27,43,80,.22) 22%, rgba(27,43,80,0) 32%),
+    linear-gradient(to top,   #1B2B50 0%, #1B2B50 22%, rgba(27,43,80,.94) 32%, rgba(27,43,80,.62) 44%, rgba(27,43,80,.18) 60%, rgba(27,43,80,0) 74%);
+}
 
 .nadtitul{
   font-family:'Urbanist',sans-serif; font-weight:800; color:var(--teal);
@@ -25,6 +39,7 @@ html,body{ background:#111; }
 .story .nadtitul{ font-size:34px; }
 
 .telo{ margin:auto 0; }
+.foto .telo{ margin:auto 0 0; padding-bottom:34px; }
 
 .hlavni{
   font-family:'Urbanist',sans-serif; font-weight:900; font-size:172px;
@@ -41,6 +56,7 @@ html,body{ background:#111; }
   color:rgba(255,255,255,.88); max-width:17ch;
 }
 .story .podtitul{ font-size:44px; max-width:18ch; margin-top:30px; }
+.siroky .podtitul{ max-width:24ch; }
 
 .linka{ height:4px; background:var(--teal); width:118px; margin:44px 0 40px; }
 .story .linka{ margin:58px 0 50px; }
@@ -76,6 +92,61 @@ html,body{ background:#111; }
 .autor{ font-size:33px; color:var(--teal-lt); margin-top:32px; font-weight:500; }
 .story .autor{ font-size:38px; }
 
+/* --- karta kandidáta --- */
+.jmeno{
+  font-family:'Urbanist',sans-serif; font-weight:900; font-size:104px;
+  line-height:1; letter-spacing:-.03em;
+}
+.story .jmeno{ font-size:118px; }
+.role{
+  font-family:'Urbanist',sans-serif; font-weight:800; font-size:27px;
+  letter-spacing:.15em; text-transform:uppercase; color:var(--teal);
+  margin-top:20px;
+}
+.story .role{ font-size:31px; margin-top:24px; }
+.heslo{
+  font-family:'Urbanist',sans-serif; font-weight:700; font-size:52px;
+  line-height:1.2; margin-top:30px; letter-spacing:-.01em;
+  border-left:5px solid var(--teal); padding-left:26px;
+}
+.story .heslo{ font-size:58px; margin-top:34px; }
+
+/* --- hlasovací lístek --- */
+.sradkem{ display:flex; align-items:flex-end; gap:56px; }
+.story .sradkem{ flex-direction:column; align-items:stretch; gap:52px; }
+.sradkem .text-cast{ flex:1 1 auto; min-width:0; }
+.listek{
+  flex:0 0 350px; background:#fff; border-radius:16px; padding:26px 26px 28px;
+  color:var(--navy);
+}
+.story .listek{ flex:none; width:100%; padding:34px; }
+.listek .radek{ display:flex; align-items:center; gap:16px; }
+.listek .ctverecek{
+  position:relative; flex:0 0 auto; width:46px; height:46px;
+  border:3px solid var(--navy); border-radius:5px;
+}
+.story .listek .ctverecek{ width:54px; height:54px; }
+.listek .krizek{
+  position:absolute; inset:-8px; color:var(--cervena);
+  font-family:'Urbanist',sans-serif; font-weight:900; font-size:60px;
+  line-height:1; display:flex; align-items:center; justify-content:center;
+}
+.story .listek .krizek{ font-size:70px; }
+.listek .cislo{
+  font-family:'Urbanist',sans-serif; font-weight:900; font-size:38px;
+  background:var(--navy); color:#fff; border-radius:8px;
+  min-width:46px; height:46px; display:flex; align-items:center; justify-content:center;
+}
+.story .listek .cislo{ font-size:44px; min-width:54px; height:54px; }
+.listek .nazev{ font-family:'Urbanist',sans-serif; font-weight:800; font-size:30px; }
+.story .listek .nazev{ font-size:35px; }
+.listek .cara{ height:3px; background:#D8DEE9; border-radius:2px; margin-top:22px; }
+.listek .cara.kratsi{ width:62%; }
+.listek .popiska{
+  font-size:22px; color:#6B7A94; margin-top:26px; line-height:1.3; font-weight:500;
+}
+.story .listek .popiska{ font-size:26px; }
+
 .pata{ padding-top:46px; display:flex; align-items:flex-end; justify-content:space-between; gap:32px; }
 .logokarta{ background:#fff; border-radius:18px; padding:24px 32px; display:flex; align-items:center; }
 .logokarta img{ height:84px; display:block; }
@@ -100,43 +171,89 @@ html,body{ background:#111; }
 function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
 // Nezlomitelná mezera za jednopísmennými předložkami a spojkami — česká typografie.
-function typo(s){ return esc(s).replace(/(^|\s)([aikosuvzAIKOSUVZ])\s+/g, '$1$2 '); }
+function typo(s){ return esc(s).replace(/(^|\s)([aikosuvzAIKOSUVZ])\s+/g, '$1$2 '); }
+
+function velikostHlavniho(t){
+  const d = t.length;
+  return d > 26 ? ' dlouhy' : (d > 14 ? ' stredni' : '');
+}
+
+function listekHtml(data){
+  const l = data.listek || {};
+  const c = [];
+  c.push('<div class="listek">');
+  c.push('<div class="radek">');
+  c.push('<div class="ctverecek"><span class="krizek">×</span></div>');
+  c.push('<div class="cislo">8</div>');
+  c.push('<div class="nazev">' + typo(l.nazev || 'PRO Hranice') + '</div>');
+  c.push('</div>');
+  c.push('<div class="cara"></div><div class="cara"></div><div class="cara kratsi"></div>');
+  c.push('<div class="popiska">' + typo(l.popiska || 'Jeden křížek v záhlaví = všech 23 hlasů kandidátům PRO Hranice.') + '</div>');
+  c.push('</div>');
+  return c.join('');
+}
 
 function vykresli(data, format){
   const plocha = document.getElementById('plocha');
-  plocha.className = format;
+  const rozvrzeni = data.rozvrzeni || 'zprava';
+  plocha.className = format + ' ' + rozvrzeni + (data.siroky ? ' siroky' : '');
+  plocha.innerHTML = '';
+
+  if (rozvrzeni === 'foto' && data.foto) {
+    const pod = document.createElement('div');
+    pod.className = 'fotopodklad';
+    const img = document.createElement('img');
+    img.src = data.foto;
+    if (data.pozice_fotky) img.style.objectPosition = data.pozice_fotky;
+    pod.appendChild(img);
+    plocha.appendChild(pod);
+    const zavoj = document.createElement('div');
+    zavoj.className = 'zavoj';
+    plocha.appendChild(zavoj);
+  }
+
+  const vnitrek = document.createElement('div');
+  vnitrek.className = 'vnitrek';
+  plocha.appendChild(vnitrek);
+
   const c = [];
-
   c.push('<div class="nadtitul">' + typo(data.nadtitul || '') + '</div>');
-
   c.push('<div class="telo">');
-  if (data.citat) {
-    c.push('<div class="citat">„' + typo(data.citat) + '"</div>');
+
+  if (rozvrzeni === 'foto') {
+    c.push('<div class="jmeno">' + typo(data.jmeno || '') + '</div>');
+    if (data.role) c.push('<div class="role">' + typo(data.role) + '</div>');
+    if (data.citat) c.push('<div class="heslo">„' + typo(data.citat) + '“</div>');
+  } else if (data.citat) {
+    c.push('<div class="citat">„' + typo(data.citat) + '“</div>');
     if (data.autor) c.push('<div class="autor">' + typo(data.autor) + '</div>');
   } else if (data.hlavni) {
-    const d = data.hlavni.length;
-    const trida = d > 26 ? ' dlouhy' : (d > 14 ? ' stredni' : '');
-    c.push('<div class="hlavni' + trida + '">' + typo(data.hlavni) + '</div>');
+    const maListek = !!data.listek;
+    if (maListek) c.push('<div class="sradkem"><div class="text-cast">');
+    c.push('<div class="hlavni' + velikostHlavniho(data.hlavni) + '">' + typo(data.hlavni) + '</div>');
     if (data.podtitul) c.push('<div class="podtitul">' + typo(data.podtitul) + '</div>');
+    if (maListek) c.push('</div>' + listekHtml(data) + '</div>');
   }
 
-  if ((data.sloupce && data.sloupce.length) || (data.body && data.body.length)) {
-    c.push('<div class="linka"></div>');
-  }
-  if (data.sloupce && data.sloupce.length) {
-    c.push('<div class="sloupce">');
-    for (const s of data.sloupce) {
-      c.push('<div class="sloupec' + (s.akcent ? ' akcent' : '') + '">');
-      c.push('<div class="popis">' + typo(s.popis || '') + '</div>');
-      c.push('<div class="text">' + typo(s.text || '') + '</div>');
+  if (rozvrzeni !== 'foto') {
+    if ((data.sloupce && data.sloupce.length) || (data.body && data.body.length)) {
+      c.push('<div class="linka"></div>');
+    }
+    if (data.sloupce && data.sloupce.length) {
+      c.push('<div class="sloupce">');
+      for (const s of data.sloupce) {
+        c.push('<div class="sloupec' + (s.akcent ? ' akcent' : '') + '">');
+        c.push('<div class="popis">' + typo(s.popis || '') + '</div>');
+        c.push('<div class="text">' + typo(s.text || '') + '</div>');
+        c.push('</div>');
+      }
       c.push('</div>');
     }
-    c.push('</div>');
-  }
-  if (data.body && data.body.length) {
-    c.push('<div class="body">');
-    for (const b of data.body) c.push('<div class="bod">' + typo(b) + '</div>');
-    c.push('</div>');
+    if (data.body && data.body.length) {
+      c.push('<div class="body">');
+      for (const b of data.body) c.push('<div class="bod">' + typo(b) + '</div>');
+      c.push('</div>');
+    }
   }
   c.push('</div>');
 
@@ -146,7 +263,7 @@ function vykresli(data, format){
   c.push('<div class="pravni">' + typo(data.pravni || 'Zadavatel i zpracovatel: PRO Hranice') + '</div></div>');
   c.push('</div>');
 
-  plocha.querySelector('.vnitrek').innerHTML = c.join('');
+  vnitrek.innerHTML = c.join('');
 }
 </script>
 </body></html>
