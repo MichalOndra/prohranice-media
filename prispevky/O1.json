@@ -1,0 +1,12 @@
+{
+  "id": "O1",
+  "siroky": true,
+  "nadtitul": "Jak se volí · 9. a 10. října",
+  "hlavni": "Máte 23 hlasů",
+  "podtitul": "Ne jeden. Tolik je v Hranicích zastupitelů.",
+  "listek": {
+    "nazev": "PRO Hranice",
+    "popiska": "Jeden křížek v záhlaví = všech 23 hlasů kandidátům PRO Hranice."
+  },
+  "formaty": ["ctverec", "story"]
+}
