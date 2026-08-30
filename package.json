@@ -1,0 +1,9 @@
+{
+  "name": "prohranice-media",
+  "private": true,
+  "type": "module",
+  "description": "Renderer vizualu pro kampan PRO Hranice 2026",
+  "dependencies": {
+    "playwright": "^1.49.0"
+  }
+}
