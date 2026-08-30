@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="cs"><head><meta charset="utf-8">
+<style>
+@font-face { font-family:'Urbanist'; src:url('fonty/Urbanist[wght].ttf') format('truetype-variations'); font-weight:100 900; }
+@font-face { font-family:'InterV'; src:url('fonty/Inter[opsz,wght].ttf') format('truetype-variations'); font-weight:100 900; }
+
+:root{ --navy:#1B2B50; --teal:#6CB3B0; --teal-lt:#A8D5D3; --cervena:#E85D4E; }
+*{ margin:0; padding:0; box-sizing:border-box; }
+html,body{ background:#111; }
+
+#plocha{
+  position:relative; overflow:hidden; background:var(--navy); color:#fff;
+  font-family:'InterV',sans-serif; display:flex; flex-direction:column;
+}
+#plocha.ctverec{ width:1080px; height:1080px; padding:78px 84px 74px; }
+#plocha.story { width:1080px; height:1920px; padding:300px 88px 290px; }
+
+.vnitrek{ display:flex; flex-direction:column; height:100%; justify-content:space-between; }
+.story .vnitrek{ height:100%; }
+
+.nadtitul{
+  font-family:'Urbanist',sans-serif; font-weight:800; color:var(--teal);
+  font-size:29px; letter-spacing:.19em; text-transform:uppercase; line-height:1.4;
+}
+.story .nadtitul{ font-size:34px; }
+
+.telo{ margin:auto 0; }
+
+.hlavni{
+  font-family:'Urbanist',sans-serif; font-weight:900; font-size:172px;
+  line-height:.92; letter-spacing:-.032em;
+}
+.story .hlavni{ font-size:196px; }
+.hlavni.dlouhy{ font-size:104px; line-height:1.02; letter-spacing:-.02em; }
+.story .hlavni.dlouhy{ font-size:118px; }
+.hlavni.stredni{ font-size:132px; line-height:.98; }
+.story .hlavni.stredni{ font-size:150px; }
+
+.podtitul{
+  font-size:39px; line-height:1.34; font-weight:400; margin-top:26px;
+  color:rgba(255,255,255,.88); max-width:17ch;
+}
+.story .podtitul{ font-size:44px; max-width:18ch; margin-top:30px; }
+
+.linka{ height:4px; background:var(--teal); width:118px; margin:44px 0 40px; }
+.story .linka{ margin:58px 0 50px; }
+
+.sloupce{ display:flex; gap:56px; }
+.story .sloupce{ flex-direction:column; gap:44px; }
+.sloupec{ flex:1; }
+.sloupec .popis{
+  font-family:'Urbanist',sans-serif; font-weight:800; font-size:26px;
+  letter-spacing:.14em; text-transform:uppercase; margin-bottom:12px;
+  color:rgba(255,255,255,.5);
+}
+.story .sloupec .popis{ font-size:30px; }
+.sloupec.akcent .popis{ color:var(--teal); }
+.sloupec .text{ font-size:33px; line-height:1.35; font-weight:500; color:rgba(255,255,255,.72); }
+.story .sloupec .text{ font-size:38px; }
+.sloupec.akcent .text{ color:#fff; }
+
+.body{ display:flex; flex-direction:column; gap:22px; }
+.story .body{ gap:28px; }
+.bod{ display:flex; gap:20px; font-size:37px; line-height:1.3; font-weight:500; }
+.story .bod{ font-size:42px; }
+.bod::before{
+  content:''; flex:0 0 auto; width:14px; height:14px; border-radius:3px;
+  background:var(--teal); margin-top:.42em;
+}
+
+.citat{
+  font-family:'Urbanist',sans-serif; font-weight:700; font-size:76px;
+  line-height:1.16; letter-spacing:-.015em;
+}
+.story .citat{ font-size:86px; }
+.autor{ font-size:33px; color:var(--teal-lt); margin-top:32px; font-weight:500; }
+.story .autor{ font-size:38px; }
+
+.pata{ padding-top:46px; display:flex; align-items:flex-end; justify-content:space-between; gap:32px; }
+.logokarta{ background:#fff; border-radius:18px; padding:24px 32px; display:flex; align-items:center; }
+.logokarta img{ height:84px; display:block; }
+.story .logokarta img{ height:96px; }
+.vpravo{ text-align:right; }
+.adresa{ font-family:'Urbanist',sans-serif; font-weight:800; font-size:34px; color:#fff; }
+.story .adresa{ font-size:40px; }
+.osmicka{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:60px; height:60px; border-radius:50%; background:var(--teal); color:var(--navy);
+  font-family:'Urbanist',sans-serif; font-weight:900; font-size:38px; margin-left:16px;
+}
+.story .osmicka{ width:70px; height:70px; font-size:44px; }
+.radekadresa{ display:flex; align-items:center; justify-content:flex-end; }
+.pravni{ font-size:21px; color:rgba(255,255,255,.5); margin-top:12px; letter-spacing:.02em; }
+.story .pravni{ font-size:22px; }
+</style></head><body>
+
+<div id="plocha" class="ctverec"><div class="vnitrek"></div></div>
+
+<script>
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+// Nezlomitelná mezera za jednopísmennými předložkami a spojkami — česká typografie.
+function typo(s){ return esc(s).replace(/(^|\s)([aikosuvzAIKOSUVZ])\s+/g, '$1$2 '); }
+
+function vykresli(data, format){
+  const plocha = document.getElementById('plocha');
+  plocha.className = format;
+  const c = [];
+
+  c.push('<div class="nadtitul">' + typo(data.nadtitul || '') + '</div>');
+
+  c.push('<div class="telo">');
+  if (data.citat) {
+    c.push('<div class="citat">„' + typo(data.citat) + '"</div>');
+    if (data.autor) c.push('<div class="autor">' + typo(data.autor) + '</div>');
+  } else if (data.hlavni) {
+    const d = data.hlavni.length;
+    const trida = d > 26 ? ' dlouhy' : (d > 14 ? ' stredni' : '');
+    c.push('<div class="hlavni' + trida + '">' + typo(data.hlavni) + '</div>');
+    if (data.podtitul) c.push('<div class="podtitul">' + typo(data.podtitul) + '</div>');
+  }
+
+  if ((data.sloupce && data.sloupce.length) || (data.body && data.body.length)) {
+    c.push('<div class="linka"></div>');
+  }
+  if (data.sloupce && data.sloupce.length) {
+    c.push('<div class="sloupce">');
+    for (const s of data.sloupce) {
+      c.push('<div class="sloupec' + (s.akcent ? ' akcent' : '') + '">');
+      c.push('<div class="popis">' + typo(s.popis || '') + '</div>');
+      c.push('<div class="text">' + typo(s.text || '') + '</div>');
+      c.push('</div>');
+    }
+    c.push('</div>');
+  }
+  if (data.body && data.body.length) {
+    c.push('<div class="body">');
+    for (const b of data.body) c.push('<div class="bod">' + typo(b) + '</div>');
+    c.push('</div>');
+  }
+  c.push('</div>');
+
+  c.push('<div class="pata">');
+  c.push('<div class="logokarta"><img src="logo.webp" alt="PRO Hranice"></div>');
+  c.push('<div class="vpravo"><div class="radekadresa"><span class="adresa">prohranice.cz</span><span class="osmicka">8</span></div>');
+  c.push('<div class="pravni">' + typo(data.pravni || 'Zadavatel i zpracovatel: PRO Hranice') + '</div></div>');
+  c.push('</div>');
+
+  plocha.querySelector('.vnitrek').innerHTML = c.join('');
+}
+</script>
+</body></html>
