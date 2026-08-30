@@ -171,7 +171,7 @@ html,body{ background:#111; }
 function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
 // Nezlomitelná mezera za jednopísmennými předložkami a spojkami — česká typografie.
-function typo(s){ return esc(s).replace(/(^|\s)([aikosuvzAIKOSUVZ])\s+/g, '$1$2 '); }
+function typo(s){ return esc(s).replace(/(^|\s)([aikosuvzAIKOSUVZ])\s+/g, '$1$2&nbsp;'); }
 
 function velikostHlavniho(t){
   const d = t.length;
