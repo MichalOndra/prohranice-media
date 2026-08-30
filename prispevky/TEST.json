@@ -1,0 +1,7 @@
+{
+  "id": "TEST",
+  "nadtitul": "Zkouška",
+  "hlavni": "Test",
+  "podtitul": "Ověřujeme, že si Facebook obrázek načte. Za chvíli zmizí.",
+  "formaty": ["ctverec", "story"]
+}
