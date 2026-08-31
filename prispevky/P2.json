@@ -1,0 +1,13 @@
+{
+  "id": "P2",
+  "rozvrzeni": "zprava",
+  "spis": "Program · senioři",
+  "hlavni": "Nikdo v Hranicích nemá stárnout sám.",
+  "popis": "Většina lidí chce zůstat co nejdéle doma, mezi svými.\n**Bez pomoci až domů a bez bezbariérových cest to nejde.**",
+  "body": [
+    "Terénní sociálně-zdravotní péče až domů",
+    "Bezbariérové chodníky, přechody a lavičky",
+    "Senior taxi rozšířit tam, kde lidem pomáhá"
+  ],
+  "formaty": ["ctverec", "story"]
+}
