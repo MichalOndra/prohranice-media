@@ -1,18 +1,14 @@
 {
   "id": "D1",
-  "nadtitul": "Doloženo · usnesení č. 524/2025",
-  "hlavni": "10 milionů",
-  "podtitul": "korun ročně navíc do rozpočtu Hranic",
-  "sloupce": [
-    {
-      "popis": "Platí víc",
-      "text": "areály těžkého průmyslu, energetiky a těžby",
-      "akcent": true
-    },
-    {
-      "popis": "Platí stejně",
-      "text": "rodinné domy a byty"
-    }
-  ],
+  "rozvrzeni": "pas",
+  "foto": "https://lh3.googleusercontent.com/d/1SGCtzgjuqVy85hLz3DI3GLNqRcEGa1UQ=w1600",
+  "pozice_fotky": "50% 42%",
+  "jas": 1.10,
+  "spis": "Usnesení 524/2025 · zastupitelstvo Hranic · 19. 6. 2025",
+  "cifra": "10 000 000",
+  "mena": "Kč",
+  "popis": "ročně navíc do městské kasy — od těžkého průmyslu a těžby.\n**Ne z vašich domů a bytů.**",
+  "puvod": "Náš podnět ve finančním výboru · prosinec 2023",
+  "razitko": { "horni": "Schváleno", "cislo": "18:0" },
   "formaty": ["ctverec", "story"]
 }
