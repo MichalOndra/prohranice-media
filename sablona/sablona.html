@@ -210,6 +210,37 @@ function sdeleni(data){
   return c.join('');
 }
 
+/**
+ * Zmenší text, dokud se celá karta včetně patičky nevejde do plochy.
+ * Bez tohohle delší popis vytlačí logo a právní řádek mimo obrázek.
+ */
+function dorovnej(){
+  const plocha = document.getElementById('plocha');
+  const telo = plocha.querySelector('.pas-telo, .telo');
+  const pata = plocha.querySelector('.pata');
+  if (!telo) return;
+
+  function preteka(){
+    if (plocha.scrollHeight > plocha.clientHeight + 1) return true;
+    if (pata) {
+      const r = pata.getBoundingClientRect();
+      const p = plocha.getBoundingClientRect();
+      if (r.bottom > p.bottom + 1) return true;
+    }
+    return false;
+  }
+
+  const prvky = [...telo.querySelectorAll('.cifra, .mena, .hlavni, .popis, .bod, .puvod, .citat, .autor')];
+  if (!prvky.length) return;
+  const zaklad = prvky.map(p => parseFloat(getComputedStyle(p).fontSize));
+
+  let mira = 1;
+  while (preteka() && mira > 0.6) {
+    mira -= 0.04;
+    prvky.forEach((p, i) => { p.style.fontSize = (zaklad[i] * mira).toFixed(1) + 'px'; });
+  }
+}
+
 function vykresli(data, format){
   const plocha = document.getElementById('plocha');
   const rozvrzeni = data.rozvrzeni || 'zprava';
@@ -224,6 +255,7 @@ function vykresli(data, format){
       + '<div class="pas-telo okraj">' + sdeleni(data) + '</div>'
       + razitko(data)
       + patka(data);
+    document.fonts.ready.then(dorovnej);
     return;
   }
 
@@ -233,6 +265,7 @@ function vykresli(data, format){
       + '<div class="telo okraj">' + sdeleni(data) + '</div>'
       + patka(data) + '</div>'
       + razitko(data);
+    document.fonts.ready.then(dorovnej);
     return;
   }
 
@@ -240,6 +273,7 @@ function vykresli(data, format){
     + '<div class="telo okraj">' + sdeleni(data) + '</div>'
     + patka(data) + '</div>'
     + razitko(data);
+  document.fonts.ready.then(dorovnej);
 }
 </script>
 </body></html>
