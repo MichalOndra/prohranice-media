@@ -1,12 +1,13 @@
 {
   "id": "D3",
-  "rozvrzeni": "pas",
-  "foto": "https://lh3.googleusercontent.com/d/1U0xVaSQf9IiaspmAjuwJu7rR7j9kKSJO=w1600",
-  "pozice_fotky": "50% 55%",
-  "jas": 1.06,
-  "spis": "Usnesení č. 620/2025 a č. 728/2026",
-  "hlavni": "Číst dřív, než se podepíše.",
-  "popis": "Prosinec 2025: bod stažen po naší námitce, 20 : 0.\n**Červen 2026: prodej schválen s podmínkami.**",
-  "puvod": "Námitka na zastupitelstvu · prosinec 2025",
+  "rozvrzeni": "zprava",
+  "spis": "Prodej městských pozemků u prodejny řetězce",
+  "hlavni": "Parkoviště pro všechny, ne jen pro zákazníky",
+  "body": [
+    "Prosinec 2025 — v materiálu parkoviště jen pro zákazníky. Bod stažen, 20 : 0.",
+    "Červen 2026 — vrátil se s rozšířením parkoviště a projektem chodníku. Schváleno.",
+    "Michal Ondra se přesto zdržel: veřejný přístup je zatím jen příslib, ne záruka."
+  ],
+  "puvod": "Usnesení č. 620/2025 a č. 728/2026",
   "formaty": ["ctverec", "story"]
 }
