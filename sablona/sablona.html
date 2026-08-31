@@ -4,266 +4,242 @@
 @font-face { font-family:'Urbanist'; src:url('fonty/Urbanist[wght].ttf') format('truetype-variations'); font-weight:100 900; }
 @font-face { font-family:'InterV'; src:url('fonty/Inter[opsz,wght].ttf') format('truetype-variations'); font-weight:100 900; }
 
-:root{ --navy:#1B2B50; --teal:#6CB3B0; --teal-lt:#A8D5D3; --cervena:#E85D4E; }
+:root{ --navy:#16233F; --teal:#6CB3B0; --teal-lt:#A8D5D3; --cervena:#E85D4E; }
 *{ margin:0; padding:0; box-sizing:border-box; }
-html,body{ background:#111; }
+html,body{ background:#0b0b0b; }
 
 #plocha{
-  position:relative; overflow:hidden; background:var(--navy); color:#fff;
+  position:relative; width:1080px; overflow:hidden; background:var(--navy); color:#fff;
   font-family:'InterV',sans-serif; display:flex; flex-direction:column;
 }
-#plocha.ctverec{ width:1080px; height:1080px; padding:78px 84px 74px; }
-#plocha.story { width:1080px; height:1920px; padding:300px 88px 290px; }
+#plocha.ctverec{ height:1080px; }
+#plocha.na45   { height:1350px; }
+#plocha.story  { height:1920px; }
 
-.vnitrek{ position:relative; z-index:2; display:flex; flex-direction:column; height:100%; justify-content:space-between; }
+/* okraje: story má nahoře i dole bezpečnou zónu Instagramu */
+.okraj{ padding-left:84px; padding-right:84px; }
+.story .okraj{ padding-left:88px; padding-right:88px; }
 
-/* --- fotografické pozadí --- */
-.fotopodklad{ position:absolute; inset:0; z-index:0; }
-.fotopodklad img{ width:100%; height:100%; object-fit:cover; object-position:50% 18%; display:block; }
+.hlava{ padding-top:70px; padding-bottom:20px; }
+.story .hlava{ padding-top:300px; padding-bottom:26px; }
+.spis{
+  border-top:2px solid rgba(255,255,255,.30); padding-top:19px;
+  font-size:21px; font-weight:700; letter-spacing:.13em; text-transform:uppercase;
+  color:rgba(255,255,255,.72); white-space:nowrap;
+}
+.story .spis{ font-size:24px; }
+
+/* ---------- fotopás (rozvržení „pas") ---------- */
+.fotopas{ position:relative; width:100%; height:430px; overflow:hidden; flex:0 0 auto; }
+.na45 .fotopas{ height:560px; }
+.story .fotopas{ height:700px; }
+.fotopas img{ width:100%; height:100%; object-fit:cover; object-position:50% 42%; display:block; }
+.fotopas::after{
+  content:''; position:absolute; inset:0;
+  background:linear-gradient(to bottom, rgba(22,35,63,.10) 0%, rgba(22,35,63,0) 30%,
+    rgba(22,35,63,.55) 88%, var(--navy) 100%);
+}
+
+/* ---------- fotka přes celou plochu (rozvržení „foto") ---------- */
+.podklad{ position:absolute; inset:0; z-index:0; }
+.podklad img{ width:100%; height:100%; object-fit:cover; object-position:50% 50%; display:block; }
 .zavoj{
   position:absolute; inset:0; z-index:1;
   background:
-    linear-gradient(to bottom, rgba(27,43,80,.80) 0%, rgba(27,43,80,.30) 14%, rgba(27,43,80,0) 26%),
-    linear-gradient(to top,   #1B2B50 0%, #1B2B50 30%, rgba(27,43,80,.94) 41%, rgba(27,43,80,.62) 54%, rgba(27,43,80,.18) 70%, rgba(27,43,80,0) 84%);
+    linear-gradient(to bottom, rgba(22,35,63,.86) 0%, rgba(22,35,63,.42) 13%, rgba(22,35,63,0) 27%),
+    linear-gradient(to top, var(--navy) 0%, rgba(22,35,63,.96) 27%, rgba(22,35,63,.72) 42%,
+      rgba(22,35,63,.24) 60%, rgba(22,35,63,0) 76%);
 }
 .story .zavoj{
   background:
-    linear-gradient(to bottom, rgba(27,43,80,.80) 0%, rgba(27,43,80,.55) 13%, rgba(27,43,80,.22) 22%, rgba(27,43,80,0) 32%),
-    linear-gradient(to top,   #1B2B50 0%, #1B2B50 22%, rgba(27,43,80,.94) 32%, rgba(27,43,80,.62) 44%, rgba(27,43,80,.18) 60%, rgba(27,43,80,0) 74%);
+    linear-gradient(to bottom, rgba(22,35,63,.86) 0%, rgba(22,35,63,.55) 13%, rgba(22,35,63,0) 30%),
+    linear-gradient(to top, var(--navy) 0%, rgba(22,35,63,.96) 22%, rgba(22,35,63,.70) 34%,
+      rgba(22,35,63,.20) 54%, rgba(22,35,63,0) 72%);
+}
+.nahore .zavoj{
+  background:
+    linear-gradient(to bottom, var(--navy) 0%, rgba(22,35,63,.95) 30%, rgba(22,35,63,.66) 45%,
+      rgba(22,35,63,.16) 62%, rgba(22,35,63,0) 74%),
+    linear-gradient(to top, rgba(22,35,63,.88) 0%, rgba(22,35,63,.35) 12%, rgba(22,35,63,0) 24%);
 }
 
-.nadtitul{
-  font-family:'Urbanist',sans-serif; font-weight:800; color:var(--teal);
-  font-size:29px; letter-spacing:.19em; text-transform:uppercase; line-height:1.4;
-}
-.story .nadtitul{ font-size:34px; }
+.vrstva{ position:relative; z-index:2; display:flex; flex-direction:column; height:100%; }
 
-.telo{ margin:auto 0; }
-.foto .telo{ margin:auto 0 0; padding-bottom:34px; }
+/* ---------- text ---------- */
+.telo{ flex:1 1 auto; display:flex; flex-direction:column; justify-content:flex-end;
+  padding-top:44px; padding-bottom:38px; }
+.zprava .telo{ justify-content:center; }
+.nahore .telo{ justify-content:flex-start; padding-top:36px; }
+.pas-telo{ flex:1 1 auto; padding-top:44px; }
+.story .pas-telo{ padding-top:60px; }
 
-.hlavni{
-  font-family:'Urbanist',sans-serif; font-weight:900; font-size:172px;
-  line-height:.92; letter-spacing:-.032em;
-}
-.story .hlavni{ font-size:196px; }
-.hlavni.dlouhy{ font-size:104px; line-height:1.02; letter-spacing:-.02em; }
-.story .hlavni.dlouhy{ font-size:118px; }
-.hlavni.stredni{ font-size:132px; line-height:.98; }
-.story .hlavni.stredni{ font-size:150px; }
+.cifra{ font-family:'Urbanist',sans-serif; font-weight:900; font-size:128px; line-height:.9;
+  letter-spacing:-.035em; font-variant-numeric:tabular-nums; }
+.story .cifra{ font-size:150px; }
+.mena{ font-size:64px; margin-left:8px; }
+.story .mena{ font-size:74px; }
 
-.podtitul{
-  font-size:39px; line-height:1.34; font-weight:400; margin-top:26px;
-  color:rgba(255,255,255,.88); max-width:17ch;
-}
-.story .podtitul{ font-size:44px; max-width:18ch; margin-top:30px; }
-.siroky .podtitul{ max-width:24ch; }
+.hlavni{ font-family:'Urbanist',sans-serif; font-weight:900; font-size:122px; line-height:.94;
+  letter-spacing:-.035em; }
+.hlavni.stredni{ font-size:92px; line-height:1.02; letter-spacing:-.028em; }
+.hlavni.dlouhy{ font-size:74px; line-height:1.06; letter-spacing:-.02em; }
+.story .hlavni{ font-size:140px; }
+.story .hlavni.stredni{ font-size:104px; }
+.story .hlavni.dlouhy{ font-size:84px; }
 
-.linka{ height:4px; background:var(--teal); width:118px; margin:44px 0 40px; }
-.story .linka{ margin:58px 0 50px; }
+.popis{ font-size:34px; line-height:1.34; font-weight:500; margin-top:22px;
+  color:rgba(255,255,255,.85); max-width:25ch; }
+.story .popis{ font-size:40px; max-width:23ch; margin-top:28px; }
+.popis b{ color:#fff; font-weight:700; }
 
-.sloupce{ display:flex; gap:56px; }
-.story .sloupce{ flex-direction:column; gap:44px; }
-.sloupec{ flex:1; }
-.sloupec .popis{
-  font-family:'Urbanist',sans-serif; font-weight:800; font-size:26px;
-  letter-spacing:.14em; text-transform:uppercase; margin-bottom:12px;
-  color:rgba(255,255,255,.5);
-}
-.story .sloupec .popis{ font-size:30px; }
-.sloupec.akcent .popis{ color:var(--teal); }
-.sloupec .text{ font-size:33px; line-height:1.35; font-weight:500; color:rgba(255,255,255,.72); }
-.story .sloupec .text{ font-size:38px; }
-.sloupec.akcent .text{ color:#fff; }
+.puvod{ margin-top:26px; font-size:24px; font-weight:600; letter-spacing:.06em;
+  text-transform:uppercase; color:var(--teal); }
+.story .puvod{ font-size:27px; margin-top:32px; }
 
-.body{ display:flex; flex-direction:column; gap:22px; }
+.body{ display:flex; flex-direction:column; gap:22px; margin-top:34px; }
 .story .body{ gap:28px; }
-.bod{ display:flex; gap:20px; font-size:37px; line-height:1.3; font-weight:500; }
+.bod{ display:flex; gap:20px; font-size:36px; line-height:1.3; font-weight:500; }
 .story .bod{ font-size:42px; }
-.bod::before{
-  content:''; flex:0 0 auto; width:14px; height:14px; border-radius:3px;
-  background:var(--teal); margin-top:.42em;
-}
+.bod::before{ content:''; flex:0 0 auto; width:14px; height:14px; border-radius:3px;
+  background:var(--teal); margin-top:.42em; }
 
-.citat{
-  font-family:'Urbanist',sans-serif; font-weight:700; font-size:76px;
-  line-height:1.16; letter-spacing:-.015em;
-}
-.story .citat{ font-size:86px; }
-.autor{ font-size:33px; color:var(--teal-lt); margin-top:32px; font-weight:500; }
-.story .autor{ font-size:38px; }
+.citat{ font-family:'Urbanist',sans-serif; font-weight:700; font-size:76px; line-height:1.16;
+  letter-spacing:-.015em; }
+.story .citat{ font-size:88px; }
+.autor{ font-size:32px; color:var(--teal-lt); margin-top:30px; font-weight:500; }
 
-/* --- karta kandidáta --- */
-.jmeno{
-  font-family:'Urbanist',sans-serif; font-weight:900; font-size:104px;
-  line-height:1; letter-spacing:-.03em;
-}
-.story .jmeno{ font-size:118px; }
-.role{
-  font-family:'Urbanist',sans-serif; font-weight:800; font-size:27px;
-  letter-spacing:.15em; text-transform:uppercase; color:var(--teal);
-  margin-top:20px;
-}
-.story .role{ font-size:31px; margin-top:24px; }
-.heslo{
-  font-family:'Urbanist',sans-serif; font-weight:700; font-size:52px;
-  line-height:1.2; margin-top:30px; letter-spacing:-.01em;
-  border-left:5px solid var(--teal); padding-left:26px;
-}
-.story .heslo{ font-size:58px; margin-top:34px; }
+/* ---------- razítko ---------- */
+.razitko{ position:absolute; right:78px; transform:rotate(-7deg); z-index:3;
+  border:6px solid var(--cervena); border-radius:10px; padding:10px 22px 12px;
+  color:var(--cervena); font-family:'Urbanist',sans-serif; font-weight:900; text-align:center; }
+.ctverec .razitko{ bottom:250px; }
+.na45 .razitko{ bottom:300px; }
+.story .razitko{ bottom:470px; }
+.razitko .horni{ font-size:20px; letter-spacing:.18em; }
+.razitko .cislo{ font-size:60px; line-height:1; letter-spacing:-.02em; }
 
-/* --- hlasovací lístek --- */
-.sradkem{ display:flex; align-items:flex-end; gap:56px; }
-.story .sradkem{ flex-direction:column; align-items:stretch; gap:52px; }
-.sradkem .text-cast{ flex:1 1 auto; min-width:0; }
-.listek{
-  flex:0 0 350px; background:#fff; border-radius:16px; padding:26px 26px 28px;
-  color:var(--navy);
-}
-.story .listek{ flex:none; width:100%; padding:34px; }
-.listek .radek{ display:flex; align-items:center; gap:16px; }
-.listek .ctverecek{
-  position:relative; flex:0 0 auto; width:46px; height:46px;
-  border:3px solid var(--navy); border-radius:5px;
-}
-.story .listek .ctverecek{ width:54px; height:54px; }
-.listek .krizek{
-  position:absolute; inset:-8px; color:var(--cervena);
-  font-family:'Urbanist',sans-serif; font-weight:900; font-size:60px;
-  line-height:1; display:flex; align-items:center; justify-content:center;
-}
-.story .listek .krizek{ font-size:70px; }
-.listek .cislo{
-  font-family:'Urbanist',sans-serif; font-weight:900; font-size:38px;
-  background:var(--navy); color:#fff; border-radius:8px;
-  min-width:46px; height:46px; display:flex; align-items:center; justify-content:center;
-}
-.story .listek .cislo{ font-size:44px; min-width:54px; height:54px; }
-.listek .nazev{ font-family:'Urbanist',sans-serif; font-weight:800; font-size:30px; }
-.story .listek .nazev{ font-size:35px; }
-.listek .cara{ height:3px; background:#D8DEE9; border-radius:2px; margin-top:22px; }
-.listek .cara.kratsi{ width:62%; }
-.listek .popiska{
-  font-size:22px; color:#6B7A94; margin-top:26px; line-height:1.3; font-weight:500;
-}
-.story .listek .popiska{ font-size:26px; }
-
-.pata{ padding-top:46px; display:flex; align-items:flex-end; justify-content:space-between; gap:32px; }
-.logokarta{ background:#fff; border-radius:18px; padding:24px 32px; display:flex; align-items:center; }
-.logokarta img{ height:84px; display:block; }
-.story .logokarta img{ height:96px; }
+/* ---------- patička ---------- */
+.pata{ padding-bottom:70px; display:flex; align-items:flex-end; justify-content:space-between; gap:32px; }
+.story .pata{ padding-bottom:290px; }
+.znak img{ height:74px; display:block; filter:url(#nabilo); }
+.story .znak img{ height:84px; }
 .vpravo{ text-align:right; }
-.adresa{ font-family:'Urbanist',sans-serif; font-weight:800; font-size:34px; color:#fff; }
-.story .adresa{ font-size:40px; }
-.osmicka{
-  display:inline-flex; align-items:center; justify-content:center;
-  width:60px; height:60px; border-radius:50%; background:var(--teal); color:var(--navy);
-  font-family:'Urbanist',sans-serif; font-weight:900; font-size:38px; margin-left:16px;
-}
-.story .osmicka{ width:70px; height:70px; font-size:44px; }
+.adresa{ font-family:'Urbanist',sans-serif; font-weight:800; font-size:33px; color:#fff; }
+.story .adresa{ font-size:38px; }
+.osmicka{ display:inline-flex; align-items:center; justify-content:center; width:56px; height:56px;
+  border-radius:50%; background:var(--teal); color:var(--navy);
+  font-family:'Urbanist',sans-serif; font-weight:900; font-size:35px; margin-left:14px; }
+.story .osmicka{ width:64px; height:64px; font-size:40px; }
 .radekadresa{ display:flex; align-items:center; justify-content:flex-end; }
-.pravni{ font-size:21px; color:rgba(255,255,255,.5); margin-top:12px; letter-spacing:.02em; }
+.pravni{ font-size:20px; color:rgba(255,255,255,.55); margin-top:10px; }
 .story .pravni{ font-size:22px; }
+/* Hnutí se jmenuje „pro Hranice" s malým pro — v textu se to musí odlišit. */
+.pravni .pro{ color:var(--teal); }
+.pravni .hranice{ font-weight:700; color:rgba(255,255,255,.78); }
 </style></head><body>
 
-<div id="plocha" class="ctverec"><div class="vnitrek"></div></div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <!-- Logo je na bílém podkladu. Tenhle filtr z něj udělá čistě bílou siluetu:
+       průhlednost podle toho, jak daleko je pixel od bílé: alfa = 3A − 3R, oříznuto.
+       Člen 3A tam musí být, jinak by zbělo i průhledné okolí obrázku. -->
+  <filter id="nabilo" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+    <feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  -3 0 0 3 0"/>
+  </filter>
+</svg>
+
+<div id="plocha" class="ctverec zprava"></div>
 
 <script>
 function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
 // Nezlomitelná mezera za jednopísmennými předložkami a spojkami — česká typografie.
+// Zapsaná jako entita schválně: holý znak se při přenosu přes konektor ztrácel.
 function typo(s){ return esc(s).replace(/(^|\s)([aikosuvzAIKOSUVZ])\s+/g, '$1$2&nbsp;'); }
 
-function velikostHlavniho(t){
-  const d = t.length;
-  return d > 26 ? ' dlouhy' : (d > 14 ? ' stredni' : '');
+// **tučně** uvnitř popisu
+function zvyrazni(s){ return typo(s).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>').replace(/\n/g, '<br>'); }
+
+function velikost(t){
+  const d = String(t).length;
+  return d > 24 ? ' dlouhy' : (d > 12 ? ' stredni' : '');
 }
 
-function listekHtml(data){
-  const l = data.listek || {};
+function patka(data){
+  return '<div class="pata okraj">'
+    + '<div class="znak"><img src="logo.webp" alt="pro Hranice"></div>'
+    + '<div class="vpravo"><div class="radekadresa">'
+    + '<span class="adresa">prohranice.cz</span><span class="osmicka">8</span></div>'
+    + '<div class="pravni">' + (data.pravni
+        ? typo(data.pravni)
+        : 'Zadavatel i zpracovatel: <span class="pro">pro</span> <span class="hranice">Hranice</span>')
+    + '</div></div></div>';
+}
+
+function razitko(data){
+  if (!data.razitko) return '';
+  return '<div class="razitko"><div class="horni">' + typo(data.razitko.horni || '')
+    + '</div><div class="cislo">' + typo(data.razitko.cislo || '') + '</div></div>';
+}
+
+function obrazek(data, trida){
+  const styl = [];
+  if (data.pozice_fotky) styl.push('object-position:' + data.pozice_fotky);
+  if (data.jas) styl.push('filter:brightness(' + data.jas + ')');
+  return '<div class="' + trida + '"><img src="' + esc(data.foto) + '"'
+    + (styl.length ? ' style="' + styl.join(';') + '"' : '') + '></div>';
+}
+
+function sdeleni(data){
   const c = [];
-  c.push('<div class="listek">');
-  c.push('<div class="radek">');
-  c.push('<div class="ctverecek"><span class="krizek">×</span></div>');
-  c.push('<div class="cislo">8</div>');
-  c.push('<div class="nazev">' + typo(l.nazev || 'PRO Hranice') + '</div>');
-  c.push('</div>');
-  c.push('<div class="cara"></div><div class="cara"></div><div class="cara kratsi"></div>');
-  c.push('<div class="popiska">' + typo(l.popiska || 'Jeden křížek v záhlaví = všech 23 hlasů kandidátům PRO Hranice.') + '</div>');
-  c.push('</div>');
+  if (data.cifra) {
+    c.push('<div class="cifra">' + typo(data.cifra)
+      + (data.mena ? '<span class="mena">' + typo(data.mena) + '</span>' : '') + '</div>');
+  } else if (data.citat) {
+    c.push('<div class="citat">„' + typo(data.citat) + '“</div>');
+    if (data.autor) c.push('<div class="autor">' + typo(data.autor) + '</div>');
+  } else if (data.hlavni) {
+    c.push('<div class="hlavni' + velikost(data.hlavni) + '">' + typo(data.hlavni) + '</div>');
+  }
+  if (data.popis) c.push('<div class="popis">' + zvyrazni(data.popis) + '</div>');
+  if (data.body && data.body.length) {
+    c.push('<div class="body">');
+    for (const b of data.body) c.push('<div class="bod">' + typo(b) + '</div>');
+    c.push('</div>');
+  }
+  if (data.puvod) c.push('<div class="puvod">' + typo(data.puvod) + '</div>');
   return c.join('');
 }
 
 function vykresli(data, format){
   const plocha = document.getElementById('plocha');
   const rozvrzeni = data.rozvrzeni || 'zprava';
-  plocha.className = format + ' ' + rozvrzeni + (data.siroky ? ' siroky' : '');
+  plocha.className = format + ' ' + rozvrzeni + (data.text_nahore ? ' nahore' : '');
   plocha.innerHTML = '';
 
+  const hlava = '<div class="hlava okraj"><div class="spis">' + typo(data.spis || '') + '</div></div>';
+
+  if (rozvrzeni === 'pas') {
+    plocha.innerHTML = hlava
+      + obrazek(data, 'fotopas')
+      + '<div class="pas-telo okraj">' + sdeleni(data) + '</div>'
+      + razitko(data)
+      + patka(data);
+    return;
+  }
+
   if (rozvrzeni === 'foto' && data.foto) {
-    const pod = document.createElement('div');
-    pod.className = 'fotopodklad';
-    const img = document.createElement('img');
-    img.src = data.foto;
-    if (data.pozice_fotky) img.style.objectPosition = data.pozice_fotky;
-    pod.appendChild(img);
-    plocha.appendChild(pod);
-    const zavoj = document.createElement('div');
-    zavoj.className = 'zavoj';
-    plocha.appendChild(zavoj);
+    plocha.innerHTML = obrazek(data, 'podklad') + '<div class="zavoj"></div>'
+      + '<div class="vrstva">' + hlava
+      + '<div class="telo okraj">' + sdeleni(data) + '</div>'
+      + patka(data) + '</div>'
+      + razitko(data);
+    return;
   }
 
-  const vnitrek = document.createElement('div');
-  vnitrek.className = 'vnitrek';
-  plocha.appendChild(vnitrek);
-
-  const c = [];
-  c.push('<div class="nadtitul">' + typo(data.nadtitul || '') + '</div>');
-  c.push('<div class="telo">');
-
-  if (rozvrzeni === 'foto') {
-    c.push('<div class="jmeno">' + typo(data.jmeno || '') + '</div>');
-    if (data.role) c.push('<div class="role">' + typo(data.role) + '</div>');
-    if (data.citat) c.push('<div class="heslo">„' + typo(data.citat) + '“</div>');
-  } else if (data.citat) {
-    c.push('<div class="citat">„' + typo(data.citat) + '“</div>');
-    if (data.autor) c.push('<div class="autor">' + typo(data.autor) + '</div>');
-  } else if (data.hlavni) {
-    const maListek = !!data.listek;
-    if (maListek) c.push('<div class="sradkem"><div class="text-cast">');
-    c.push('<div class="hlavni' + velikostHlavniho(data.hlavni) + '">' + typo(data.hlavni) + '</div>');
-    if (data.podtitul) c.push('<div class="podtitul">' + typo(data.podtitul) + '</div>');
-    if (maListek) c.push('</div>' + listekHtml(data) + '</div>');
-  }
-
-  if (rozvrzeni !== 'foto') {
-    if ((data.sloupce && data.sloupce.length) || (data.body && data.body.length)) {
-      c.push('<div class="linka"></div>');
-    }
-    if (data.sloupce && data.sloupce.length) {
-      c.push('<div class="sloupce">');
-      for (const s of data.sloupce) {
-        c.push('<div class="sloupec' + (s.akcent ? ' akcent' : '') + '">');
-        c.push('<div class="popis">' + typo(s.popis || '') + '</div>');
-        c.push('<div class="text">' + typo(s.text || '') + '</div>');
-        c.push('</div>');
-      }
-      c.push('</div>');
-    }
-    if (data.body && data.body.length) {
-      c.push('<div class="body">');
-      for (const b of data.body) c.push('<div class="bod">' + typo(b) + '</div>');
-      c.push('</div>');
-    }
-  }
-  c.push('</div>');
-
-  c.push('<div class="pata">');
-  c.push('<div class="logokarta"><img src="logo.webp" alt="PRO Hranice"></div>');
-  c.push('<div class="vpravo"><div class="radekadresa"><span class="adresa">prohranice.cz</span><span class="osmicka">8</span></div>');
-  c.push('<div class="pravni">' + typo(data.pravni || 'Zadavatel i zpracovatel: PRO Hranice') + '</div></div>');
-  c.push('</div>');
-
-  vnitrek.innerHTML = c.join('');
+  plocha.innerHTML = '<div class="vrstva">' + hlava
+    + '<div class="telo okraj">' + sdeleni(data) + '</div>'
+    + patka(data) + '</div>'
+    + razitko(data);
 }
 </script>
 </body></html>
