@@ -1,0 +1,16 @@
+{
+  "id": "O3",
+  "rozvrzeni": "zprava",
+  "spis": "Jak volit · Hranice 9. a 10. října",
+  "cifra": "23",
+  "popis": "hlasů máte. **Jeden křížek u osmičky** je dá všechny nám.",
+  "body": [
+    "Křížek u strany = všech 23 hlasů",
+    "Křížky u jmen = nejvýš 23, jinak neplatný lístek",
+    "Obojí jde spojit"
+  ],
+  "formaty": [
+    "ctverec",
+    "story"
+  ]
+}
