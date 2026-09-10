@@ -1,16 +1,13 @@
 {
   "id": "D5",
-  "rozvrzeni": "zprava",
-  "spis": "Rozpočet města 2026 · usnesení č. 603/2025",
-  "hlavni": "Splácíme víc, než stavíme",
-  "popis": "Dvě čísla z letošního rozpočtu Hranic.",
-  "body": [
-    "39 milionů — splátky úvěrů",
-    "31 milionů — investice",
-    "Dokud to platí, jsou sliby jen sliby."
-  ],
-  "formaty": [
-    "ctverec",
-    "story"
-  ]
+  "rozvrzeni": "pas",
+  "foto": "https://lh3.googleusercontent.com/d/1U0xVaSQf9IiaspmAjuwJu7rR7j9kKSJO=w1600",
+  "pozice_fotky": "50% 50%",
+  "jas": 1.05,
+  "spis": "Rozpočet města 2026 · usnesení č. 640/2026 · 19. 2. 2026",
+  "cifra": "173,9",
+  "mena": "mil. Kč",
+  "popis": "schválených investic a jednorázových akcí na letošní rok.\n**Rozklikávací rozpočet, kde by si to každý našel, padá s chybou.**",
+  "puvod": "Ověřeno v srpnu 2026 · rozpocet.mesto-hranice.cz",
+  "formaty": ["ctverec", "story"]
 }
