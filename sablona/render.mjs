@@ -101,6 +101,22 @@ for (const soubor of soubory) {
   }
 }
 
+// Vlastni vizualy: kazdy soubor vlastni/*.html se vyfoti cely do img/<nazev>.jpg (1080x1350).
+const slozkaVlastni = path.join(koren, 'vlastni');
+if (!jenId && existsSync(slozkaVlastni)) {
+  for (const f of (await readdir(slozkaVlastni)).filter((x) => x.endsWith('.html'))) {
+    const stranka = await prohlizec.newPage({ viewport: ROZMERY.na45, deviceScaleFactor: 1 });
+    await stranka.goto('file://' + path.join(slozkaVlastni, f), { waitUntil: 'load' });
+    await stranka.evaluate(() => document.fonts.ready);
+    await stranka.waitForTimeout(500);
+    const cil = path.join(slozkaObrazku, f.replace(/\.html$/, '.jpg'));
+    await stranka.screenshot({ path: cil, type: 'jpeg', quality: 92 });
+    await stranka.close();
+    console.log(`vyrenderovano ${path.basename(cil)}`);
+    hotovo++;
+  }
+}
+
 await prohlizec.close();
 
 if (chyby.length) {
