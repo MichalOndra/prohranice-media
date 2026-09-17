@@ -1,12 +1,10 @@
 {
   "id": "A1",
-  "rozvrzeni": "pas",
-  "foto": "https://lh3.googleusercontent.com/d/16Hzji2sW1oX357ipRWPPnekKd-OUdVCF=w1600",
-  "pozice_fotky": "50% 50%",
+  "rozvrzeni": "zprava",
   "spis": "Seznam Zprávy · 17. 9. 2026",
-  "hlavni": "Starosta telefon nezvedl",
-  "popis": "Zakázka v Ekoltesu za zhruba **100 milionů**, podle auditu zdražení **až o 28 %**.\nNa dotazy redakce starosta nereagoval, předseda představenstva se odmítl vyjádřit.",
-  "puvod": "Zdroj: Seznam Zprávy, 17. 9. 2026",
+  "citat": "Porcovaná stomilionová zakázka v Hranicích",
+  "autor": "Titulek Seznam Zpráv, 17. září 2026",
+  "popis": "Podle auditu zdražení **až o 28 %** a práce za desítky milionů vyjmuté ze smlouvy.\nStarosta redakci telefon nezvedl.",
   "pravni": "Zadavatel: pro Hranice",
   "formaty": ["ctverec", "na45", "story"]
 }
