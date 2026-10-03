@@ -1,12 +1,13 @@
 {
   "id": "DK1",
-  "rozvrzeni": "zprava",
+  "rozvrzeni": "pas",
+  "foto": "https://lh3.googleusercontent.com/d/1M3cnD3Vjvs8T4At5U6anhhDo4CE9YXI6=w1400",
+  "pozice_fotky": "50% 50%",
   "spis": "Náš návrh · volný čas dětí",
   "hlavni": "4 000 Kč na dítě a rok",
   "body": [
-    "Dnes: 1 500 Kč na dítě rozdělí tabulka na radnici",
-    "Nově: osobní konto na kroužky, o kterém rozhodne rodina",
-    "1 684 dětí do 18 let v hranických klubech"
+    "Dnes 1 500 Kč na dítě rozdělí tabulka na radnici",
+    "Nově osobní konto na kroužky, o kterém rozhodne rodina"
   ],
   "formaty": ["ctverec", "story"]
 }
