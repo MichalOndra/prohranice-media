@@ -2,11 +2,11 @@
   "id": "DK1",
   "rozvrzeni": "zprava",
   "spis": "Náš návrh · volný čas dětí",
-  "hlavni": "4 000 Kč",
-  "podtitul": "na každé hranické dítě a rok — na kroužky, o kterých rozhodne rodina",
-  "sloupce": [
-    { "popis": "Dnes", "text": "1 500 Kč na dítě rozdělí tabulka na radnici" },
-    { "popis": "Nově", "text": "4 000 Kč na osobní konto, uplatní je rodiče", "akcent": true }
+  "hlavni": "4 000 Kč na dítě a rok",
+  "body": [
+    "Dnes: 1 500 Kč na dítě rozdělí tabulka na radnici",
+    "Nově: osobní konto na kroužky, o kterém rozhodne rodina",
+    "1 684 dětí do 18 let v hranických klubech"
   ],
   "formaty": ["ctverec", "story"]
 }
