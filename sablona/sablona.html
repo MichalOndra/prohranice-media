@@ -40,6 +40,33 @@ html,body{ background:#0b0b0b; }
     rgba(22,35,63,.55) 88%, var(--navy) 100%);
 }
 
+/* ---------- hlasovací lístek místo fotky ---------- */
+/* Kreslí se čistě v HTML, aby se nemusel nikam nahrávat obrázek.
+   Sousední řádky jsou jen naznačené — žádná cizí jména na lístku. */
+.listek{ background:#FAF8F3; display:flex; flex-direction:column; justify-content:center; }
+.lradek{ display:flex; align-items:center; gap:44px; padding:0 84px; }
+.lcara{ height:2px; background:#D7D3CB; margin:30px 84px; flex:0 0 auto; }
+.lbox{ flex:0 0 auto; width:116px; height:116px; border:6px solid var(--navy);
+  background:#fff; position:relative; }
+.story .lbox{ width:150px; height:150px; border-width:7px; }
+.lbox i{ position:absolute; left:50%; top:50%; width:128%; height:11px;
+  background:#1C3A78; border-radius:6px; }
+.story .lbox i{ height:14px; }
+.lbox i.a{ transform:translate(-50%,-50%) rotate(41deg); }
+.lbox i.b{ transform:translate(-50%,-50%) rotate(-41deg); }
+.lcislo{ flex:0 0 auto; font-family:'Urbanist',sans-serif; font-weight:900; font-size:96px;
+  line-height:1; letter-spacing:-.03em; color:var(--navy); }
+.story .lcislo{ font-size:124px; }
+.lnazev{ font-family:'Urbanist',sans-serif; font-weight:900; font-size:72px; line-height:1;
+  letter-spacing:-.025em; color:var(--navy); white-space:nowrap; }
+.story .lnazev{ font-size:92px; }
+.lnazev span{ font-weight:500; }
+.lprazdny{ opacity:.5; }
+.lprazdny .lbox{ width:76px; height:76px; border:4px solid #C9C5BD; }
+.story .lprazdny .lbox{ width:92px; height:92px; }
+.lpruh{ height:22px; border-radius:4px; background:#D7D3CB; flex:0 0 auto; }
+.story .lpruh{ height:26px; }
+
 /* ---------- fotka přes celou plochu (rozvržení „foto") ---------- */
 .podklad{ position:absolute; inset:0; z-index:0; }
 .podklad img{ width:100%; height:100%; object-fit:cover; object-position:50% 50%; display:block; }
@@ -189,6 +216,36 @@ function obrazek(data, trida){
     + (styl.length ? ' style="' + styl.join(';') + '"' : '') + '></div>';
 }
 
+/**
+ * Hlasovací lístek s křížkem u našeho čísla, nakreslený přímo v HTML.
+ * Zapíná se polem "listek" v JSON — buď true, nebo objekt {cislo, nazev}.
+ * Nastupuje místo fotopásu, takže má stejnou výšku i stejné stmívání dole.
+ */
+function listek(data){
+  const l = (data.listek && typeof data.listek === 'object') ? data.listek : {};
+  const cislo = l.cislo || '8';
+  const nazev = l.nazev || 'pro Hranice';
+  const prvni = String(nazev).split(' ')[0];
+  const zbytek = String(nazev).slice(prvni.length).trim();
+  const jmeno = zbytek
+    ? '<span>' + esc(prvni) + '</span> ' + esc(zbytek)
+    : esc(prvni);
+
+  const prazdny = '<div class="lradek lprazdny"><div class="lbox"></div>'
+    + '<div class="lpruh" style="width:230px"></div>'
+    + '<div class="lpruh" style="width:330px"></div></div>';
+
+  return '<div class="fotopas listek">'
+    + prazdny
+    + '<div class="lcara"></div>'
+    + '<div class="lradek"><div class="lbox"><i class="a"></i><i class="b"></i></div>'
+    + '<div class="lcislo">' + esc(cislo) + '</div>'
+    + '<div class="lnazev">' + jmeno + '</div></div>'
+    + '<div class="lcara"></div>'
+    + prazdny
+    + '</div>';
+}
+
 function sdeleni(data){
   const c = [];
   if (data.cifra) {
@@ -251,7 +308,7 @@ function vykresli(data, format){
 
   if (rozvrzeni === 'pas') {
     plocha.innerHTML = hlava
-      + obrazek(data, 'fotopas')
+      + (data.listek ? listek(data) : obrazek(data, 'fotopas'))
       + '<div class="pas-telo okraj">' + sdeleni(data) + '</div>'
       + razitko(data)
       + patka(data);
