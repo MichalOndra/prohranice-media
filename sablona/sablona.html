@@ -192,8 +192,10 @@ function velikost(t){
 }
 
 function patka(data){
+  // Pole "logo" umí zvětšit značku v patičce — výška v pixelech, např. 210.
   return '<div class="pata okraj">'
-    + '<div class="znak"><img src="logo.webp" alt="pro Hranice"></div>'
+    + '<div class="znak"><img src="logo.webp" alt="pro Hranice"'
+    + (data.logo ? ' style="height:' + parseInt(data.logo, 10) + 'px"' : '') + '></div>'
     + '<div class="vpravo"><div class="radekadresa">'
     + '<span class="adresa">prohranice.cz</span><span class="osmicka">8</span></div>'
     + '<div class="pravni">' + (data.pravni
