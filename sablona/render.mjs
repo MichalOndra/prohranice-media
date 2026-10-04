@@ -27,8 +27,12 @@ function zkontroluj(data, soubor) {
   if (data.rozvrzeni && !['pas', 'foto', 'zprava'].includes(data.rozvrzeni)) {
     p.push(`nezname "rozvrzeni" (povolene: pas, foto, zprava)`);
   }
-  if ((data.rozvrzeni === 'pas' || data.rozvrzeni === 'foto') && !data.foto) {
-    p.push(`rozvrzeni "${data.rozvrzeni}" potrebuje "foto"`);
+  if (data.rozvrzeni === 'foto' && !data.foto) {
+    p.push('rozvrzeni "foto" potrebuje "foto"');
+  }
+  // Rozvrzeni "pas" muze misto fotky nest hlasovaci listek — ten se kresli primo v HTML.
+  if (data.rozvrzeni === 'pas' && !data.foto && !data.listek) {
+    p.push('rozvrzeni "pas" potrebuje "foto" nebo "listek"');
   }
   if (data.formaty && !Array.isArray(data.formaty)) p.push('"formaty" musi byt seznam');
   for (const f of data.formaty || []) {
