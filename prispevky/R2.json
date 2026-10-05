@@ -1,12 +1,14 @@
 {
   "id": "R2",
   "rozvrzeni": "pas",
-  "listek": { "cislo": "8", "nazev": "pro Hranice" },
+  "foto": "https://lh3.googleusercontent.com/d/1IBhoUj9eJvrXvTaIauWSxecLI3KaEZ1m=w1400",
+  "pozice_fotky": "50% 2%",
   "spis": "Komunální volby v Hranicích",
   "hlavni": "Volte osmičku",
   "body": [
     "Pátek 9. října 14–22 h",
     "Sobota 10. října 8–14 h"
   ],
+  "logo": 170,
   "formaty": ["story"]
 }
