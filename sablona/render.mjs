@@ -24,13 +24,13 @@ function zkontroluj(data, soubor) {
   if (!data.id) p.push('chybi "id"');
   if (!data.spis) p.push('chybi "spis" (radek s odkazem na dokument nahore)');
   if (!data.cifra && !data.hlavni && !data.citat) p.push('chybi "cifra", "hlavni" nebo "citat"');
-  if (data.rozvrzeni && !['pas', 'foto', 'zprava'].includes(data.rozvrzeni)) {
-    p.push(`nezname "rozvrzeni" (povolene: pas, foto, zprava)`);
+  if (data.rozvrzeni && !['pas', 'foto', 'zprava', 'svetly'].includes(data.rozvrzeni)) {
+    p.push(`nezname "rozvrzeni" (povolene: pas, foto, zprava, svetly)`);
   }
-  if (data.rozvrzeni === 'foto' && !data.foto) {
-    p.push('rozvrzeni "foto" potrebuje "foto"');
+  if ((data.rozvrzeni === 'foto' || data.rozvrzeni === 'svetly') && !data.foto) {
+    p.push(`rozvrzeni "${data.rozvrzeni}" potrebuje "foto"`);
   }
-  // Rozvrzeni "pas" muze misto fotky nest hlasovaci listek — ten se kresli primo v HTML.
+  // Rozvrzeni "pas" muze misto fotky nest hlasovaci listek - ten se kresli primo v HTML.
   if (data.rozvrzeni === 'pas' && !data.foto && !data.listek) {
     p.push('rozvrzeni "pas" potrebuje "foto" nebo "listek"');
   }
@@ -78,7 +78,7 @@ for (const soubor of soubory) {
   try {
     data = JSON.parse(await readFile(path.join(slozkaPrispevku, soubor), 'utf8'));
   } catch (e) {
-    chyby.push(`${soubor}: nejde precist jako JSON — ${e.message}`);
+    chyby.push(`${soubor}: nejde precist jako JSON - ${e.message}`);
     continue;
   }
   if (!zkontroluj(data, soubor)) continue;
