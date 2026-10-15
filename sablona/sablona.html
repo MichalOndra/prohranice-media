@@ -16,7 +16,7 @@ html,body{ background:#0b0b0b; }
 #plocha.na45   { height:1350px; }
 #plocha.story  { height:1920px; }
 
-/* okraje: story má nahoře i dole bezpečnou zónu Instagramu */
+/* okraje: story m&#xE1; naho&#x159;e i dole bezpe&#x10D;nou z&#xF3;nu Instagramu */
 .okraj{ padding-left:84px; padding-right:84px; }
 .story .okraj{ padding-left:88px; padding-right:88px; }
 
@@ -29,7 +29,7 @@ html,body{ background:#0b0b0b; }
 }
 .story .spis{ font-size:24px; }
 
-/* ---------- fotopás (rozvržení „pas") ---------- */
+/* ---------- fotop&#xE1;s (rozvr&#x17E;en&#xED; &#x201E;pas") ---------- */
 .fotopas{ position:relative; width:100%; height:430px; overflow:hidden; flex:0 0 auto; }
 .na45 .fotopas{ height:560px; }
 .story .fotopas{ height:700px; }
@@ -40,9 +40,9 @@ html,body{ background:#0b0b0b; }
     rgba(22,35,63,.55) 88%, var(--navy) 100%);
 }
 
-/* ---------- hlasovací lístek místo fotky ---------- */
-/* Kreslí se čistě v HTML, aby se nemusel nikam nahrávat obrázek.
-   Sousední řádky jsou jen naznačené — žádná cizí jména na lístku. */
+/* ---------- hlasovac&#xED; l&#xED;stek m&#xED;sto fotky ---------- */
+/* Kresl&#xED; se &#x10D;ist&#x11B; v HTML, aby se nemusel nikam nahr&#xE1;vat obr&#xE1;zek.
+   Sousedn&#xED; &#x159;&#xE1;dky jsou jen nazna&#x10D;en&#xE9; &#x2014; &#x17E;&#xE1;dn&#xE1; ciz&#xED; jm&#xE9;na na l&#xED;stku. */
 .listek{ background:#FAF8F3; display:flex; flex-direction:column; justify-content:center; }
 .lradek{ display:flex; align-items:center; gap:44px; padding:0 84px; }
 .lcara{ height:2px; background:#D7D3CB; margin:30px 84px; flex:0 0 auto; }
@@ -67,7 +67,7 @@ html,body{ background:#0b0b0b; }
 .lpruh{ height:22px; border-radius:4px; background:#D7D3CB; flex:0 0 auto; }
 .story .lpruh{ height:26px; }
 
-/* ---------- fotka přes celou plochu (rozvržení „foto") ---------- */
+/* ---------- fotka p&#x159;es celou plochu (rozvr&#x17E;en&#xED; &#x201E;foto") ---------- */
 .podklad{ position:absolute; inset:0; z-index:0; }
 .podklad img{ width:100%; height:100%; object-fit:cover; object-position:50% 50%; display:block; }
 .zavoj{
@@ -135,7 +135,22 @@ html,body{ background:#0b0b0b; }
 .story .citat{ font-size:88px; }
 .autor{ font-size:32px; color:var(--teal-lt); margin-top:30px; font-weight:500; }
 
-/* ---------- razítko ---------- */
+
+/* ---------- svetla linka pro opozicni obdobi (rozvrzeni "svetly") ---------- */
+#plocha.svetly{ background:#F7F5F0; color:var(--navy); }
+.svetly .sfoto{ flex:1 1 auto; position:relative; overflow:hidden; min-height:0; }
+.svetly .sfoto img{ width:100%; height:100%; object-fit:cover; object-position:50% 55%; display:block; }
+.svetly .spas{ flex:0 0 auto; border-top:8px solid var(--teal); padding:46px 60px 50px 64px;
+  display:flex; align-items:flex-end; justify-content:space-between; gap:28px; }
+.story.svetly .spas{ padding-bottom:300px; }
+.svetly .snad{ font-size:26px; font-weight:500; color:#6E7687; margin-bottom:16px; white-space:nowrap; }
+.svetly .shl{ font-family:'Urbanist',sans-serif; font-weight:800; font-size:64px; line-height:1.14;
+  letter-spacing:-.01em; color:var(--navy); }
+.svetly .shl .akc{ color:var(--teal); }
+.svetly .slogo img{ width:230px; display:block; mix-blend-mode:multiply; }
+.svetly .razitko{ bottom:auto; top:60px; }
+
+/* ---------- raz&#xED;tko ---------- */
 .razitko{ position:absolute; right:78px; transform:rotate(-7deg); z-index:3;
   border:6px solid var(--cervena); border-radius:10px; padding:10px 22px 12px;
   color:var(--cervena); font-family:'Urbanist',sans-serif; font-weight:900; text-align:center; }
@@ -145,7 +160,7 @@ html,body{ background:#0b0b0b; }
 .razitko .horni{ font-size:20px; letter-spacing:.18em; }
 .razitko .cislo{ font-size:60px; line-height:1; letter-spacing:-.02em; }
 
-/* ---------- patička ---------- */
+/* ---------- pati&#x10D;ka ---------- */
 .pata{ padding-bottom:70px; display:flex; align-items:flex-end; justify-content:space-between; gap:32px; }
 .story .pata{ padding-bottom:290px; }
 .znak img{ height:74px; display:block; filter:url(#nabilo); }
@@ -160,15 +175,15 @@ html,body{ background:#0b0b0b; }
 .radekadresa{ display:flex; align-items:center; justify-content:flex-end; }
 .pravni{ font-size:20px; color:rgba(255,255,255,.55); margin-top:10px; }
 .story .pravni{ font-size:22px; }
-/* Hnutí se jmenuje „pro Hranice" s malým pro — v textu se to musí odlišit. */
+/* Hnut&#xED; se jmenuje &#x201E;pro Hranice" s mal&#xFD;m pro &#x2014; v textu se to mus&#xED; odli&#x161;it. */
 .pravni .pro{ color:var(--teal); }
 .pravni .hranice{ font-weight:700; color:rgba(255,255,255,.78); }
 </style></head><body>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <!-- Logo je na bílém podkladu. Tenhle filtr z něj udělá čistě bílou siluetu:
-       průhlednost podle toho, jak daleko je pixel od bílé: alfa = 3A − 3R, oříznuto.
-       Člen 3A tam musí být, jinak by zbělo i průhledné okolí obrázku. -->
+  <!-- Logo je na b&#xED;l&#xE9;m podkladu. Tenhle filtr z n&#x11B;j ud&#x11B;l&#xE1; &#x10D;ist&#x11B; b&#xED;lou siluetu:
+       pr&#x16F;hlednost podle toho, jak daleko je pixel od b&#xED;l&#xE9;: alfa = 3A &#x2212; 3R, o&#x159;&#xED;znuto.
+       &#x10C;len 3A tam mus&#xED; b&#xFD;t, jinak by zb&#x11B;lo i pr&#x16F;hledn&#xE9; okol&#xED; obr&#xE1;zku. -->
   <filter id="nabilo" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
     <feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  -3 0 0 3 0"/>
   </filter>
@@ -315,6 +330,17 @@ function vykresli(data, format){
       + razitko(data)
       + patka(data);
     document.fonts.ready.then(dorovnej);
+    return;
+  }
+
+  if (rozvrzeni === 'svetly' && data.foto) {
+    plocha.innerHTML = obrazek(data, 'sfoto')
+      + '<div class="spas"><div class="stext">'
+      + (data.spis ? '<div class="snad">' + typo(data.spis) + '</div>' : '')
+      + '<div class="shl">' + typo(data.hlavni || '')
+      + (data.popis ? '<br><span class="akc">' + typo(data.popis) + '</span>' : '')
+      + '</div></div><div class="slogo"><img src="logo.webp" alt="pro Hranice"></div></div>'
+      + razitko(data);
     return;
   }
 
